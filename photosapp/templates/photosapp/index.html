@@ -90,7 +90,7 @@
 </head>
 <body>
     <div class="title-holder">
-        <h1>Your Trove</h1>
+        <h1>My Trove</h1>
         <div><a class="upload-button" href="{% url 'upload' %}">Upload</a></div>
     </div>
     <div class="image-container">
@@ -103,7 +103,7 @@
             {% else %}
             <video width="100%" controls>
                 <source src="{{pic.media.url}}" type="video/3gp">
-                Your browser does not support the video tag.
+                Your browser does not support the video.
             </video>
             {% endif %}
             <a class="download-button" href="{{pic.media.url}}" download>Download</a>
