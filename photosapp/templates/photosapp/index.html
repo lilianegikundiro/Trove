@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="{% static 'photosapp/images/favicon.png' %}" >
+    <title>Photoapp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .image-card {
+            width: 300px;
+            background-color: #fff;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-card h2 {
+            margin-top: 0;
+        }
+
+        .image-card img, .image-card video {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #4285f4;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #3367d6;
+        }
+
+        .upload-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: green;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .title-holder{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:50px;
+        }
+
+        video{
+            max-height:300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-holder">
+        <h1>Your Trove</h1>
+        <div><a class="upload-button" href="{% url 'upload' %}">Upload</a></div>
+    </div>
+    <div class="image-container">
+        <!-- loop through all the images -->
+        {% for pic in photo %}
+        <div class="image-card">
+            <h2>{{pic.title}}</h2>
+            {% if pic.media.resource_type == "image" %}
+            <img src="{{pic.media.url}}" alt="fish">
+            {% else %}
+            <video width="100%" controls>
+                <source src="{{pic.media.url}}" type="video/3gp">
+                Your browser does not support the video tag.
+            </video>
+            {% endif %}
+            <a class="download-button" href="{{pic.media.url}}" download>Download</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
