@@ -6,16 +6,16 @@ from rest_framework.decorators import action
 
 from urllib import response
 
-from .models import photos
-from .serializers import PhotoSerializer, UserSerializer, LoginSerializer
+# from .models import photos
+from .serializers import UserSerializer, LoginSerializer
 from rest_framework import viewsets,status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 # class IndexViewSet(viewsets.ModelViewSet):
-class IndexViewSet(viewsets.ModelViewSet):
-        queryset=photos.objects.all()
-        serializer_class=PhotoSerializer
+# class IndexViewSet(viewsets.ModelViewSet):
+#         queryset=photos.objects.all()
+#         serializer_class=PhotoSerializer
         # return Response(serializer_class.data)
     
 

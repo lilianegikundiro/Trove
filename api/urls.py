@@ -20,17 +20,16 @@ from django.db import router
 from django.urls import path,include
 from rest_framework import routers
 from .views import *
-from .upload_view import UploadViewSet
+from .upload_view import ListImages, UploadImage
 from rest_framework.authtoken.views import obtain_auth_token
 from .views import RegistrationViewSet
 
 router=routers.DefaultRouter()
-router.register(r"upload",UploadViewSet,basename="upload")
 
 urlpatterns = [
-     path('upload/', UploadViewSet.as_view({'post': 'create'}),name="upload"),
-     path('index/', IndexViewSet.as_view({'get': 'list', 'post': 'create'})),
      path('register/', RegistrationViewSet.as_view({'get': 'list', 'post': 'create'}), name='registration'),
      path('login/',LoginViewSet.as_view({'post': 'login', 'put': 'update', 'delete': 'destroy'}),name='login'),
      path("",include(router.urls)),
+     path("image/upload/", UploadImage.as_view()),
+     path("image/list/", ListImages.as_view())
 ]
