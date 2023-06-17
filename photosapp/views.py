@@ -1,39 +1,86 @@
-from django.http import HttpResponse
+from telnetlib import LOGOUT
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseNotFound
+from django.views import View
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import photos
 from .forms import UploadForm
+import cloudinary
+import cloudinary.uploader
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from .forms import LoginForm
+
+
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+from .forms import RegistrationForm
+
+class RegistrationView(CreateView):
+    form_class = RegistrationForm
+    template_name = 'photosapp/registration.html'
+    success_url = reverse_lazy('login')
+
 
 
 # Create your views here.
 
 
-def index(request):
-    # imports photos and save it in database
-    photo = photos.objects.all()
-    # adding context 
-    ctx = {'photo':photo}
-    return render(request, 'photosapp/index.html',ctx)
+class IndexView(LoginRequiredMixin,View):
+    def get(self, request):
+        photo = photos.objects.all()
+        ctx = {'photo':photo}
+        return render(request, 'photosapp/index.html', ctx)
 
 
 
 
-def upload_view(request):
-    if request.method == 'POST':
+
+class UploadView(LoginRequiredMixin,View):
+    def get(self, request):
+        form = UploadForm()
+        return render(request, 'photosapp/upload.html', {'form': form})
+
+    def post(self, request):
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('index')  # Replace 'success' with the appropriate URL or view name
-    else:
-        form = UploadForm()
+            return redirect('index')  # Replace 'index' with the appropriate URL or view name
+        return render(request, 'photosapp/upload.html', {'form': form})
+
+
+
+
+
+
     
-    return render(request, 'photosapp/upload.html', {'form': form})
+class LoginView(View):
+    def get(self, request):
+        form = LoginForm()
+        return render(request, 'photosapp/login.html', {'form': form})
 
-# def download_photo(request, photo_id):
-#     # Get the photo object
-#     photo = get_object_or_404(photos, id=photo_id)
+    def post(self, request):
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('index')  # Replace 'index' with the appropriate URL or view name
+            else:
+                form.add_error(None, 'Invalid login credentials')
+        return render(request, 'photosapp/login.html', {'form': form})
+    
+def LogoutUser(request):
+	logout(request)
+	return redirect('login')
 
-#     # Set the appropriate response headers for file download
-#     response = HttpResponse(photo.image.read(), content_type='image/jpeg')
-#     response['Content-Disposition'] = 'attachment; filename="{}"'.format(photo.image.name)
-
-#     return response
+#Exceptions
+def pageNotFound(request, exception):
+	return HttpResponseNotFound('<h1>ERROR 404</h1><br><p>Page Not Found</p>')
