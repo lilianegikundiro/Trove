@@ -6,7 +6,7 @@ from rest_framework.decorators import action
 
 from urllib import response
 
-from photosapp.models import photos
+from .models import photos
 from .serializers import PhotoSerializer, UserSerializer, LoginSerializer
 from rest_framework import viewsets,status
 from rest_framework.response import Response

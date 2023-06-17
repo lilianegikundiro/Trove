@@ -28,7 +28,7 @@ router=routers.DefaultRouter()
 router.register(r"upload",UploadViewSet,basename="upload")
 
 urlpatterns = [
-     path('upload/', UploadViewSet.as_view({'post': 'upload'}),name="upload"),
+     path('upload/', UploadViewSet.as_view({'post': 'create'}),name="upload"),
      path('index/', IndexViewSet.as_view({'get': 'list', 'post': 'create'})),
      path('register/', RegistrationViewSet.as_view({'get': 'list', 'post': 'create'}), name='registration'),
      path('login/',LoginViewSet.as_view({'post': 'login', 'put': 'update', 'delete': 'destroy'}),name='login'),

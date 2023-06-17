@@ -1,6 +1,6 @@
 # photosapp/serializers.py
 from rest_framework import serializers
-from photosapp.models import photos
+from .models import photos
 from django.contrib.auth.models import User
 
 class PhotoSerializer(serializers.ModelSerializer):
