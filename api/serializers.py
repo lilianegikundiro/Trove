@@ -12,7 +12,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Image
-        fields = ["image_url", "image", "timestamp"]
+        fields = ["image_url", "image", "timestamp","id"]
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
