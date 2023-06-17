@@ -21,7 +21,7 @@ class IndexViewSet(viewsets.ModelViewSet):
 
 class RegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserSerializerg
     
 class RegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
