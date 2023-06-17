@@ -1,14 +1,17 @@
 from django.db import models
-from django.utils.timezone import now
-
-# Create your models here.
-
+from django.utils import timezone
 from cloudinary.models import CloudinaryField
 
-class photos(models.Model):
-   
-    
-    title = models.CharField(max_length=100)
-    media = CloudinaryField(resource_type='auto')
-    date= models.DateTimeField(default=now)
+
+class Image(models.Model):
+
+    image = CloudinaryField("image")
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    @property
+    def image_url(self):
+        return (
+            f"https://res.cloudinary.com/dbgooph5c/{self.image}"
+        )
+
  
