@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 import cloudinary
@@ -29,7 +31,7 @@ SECRET_KEY = 'django-insecure-5fjlbbqd*k1*2c7_6=x2ok!ch&83rpovciqt^u+=y=g*#fnh(c
 DEBUG = True
 CSRF_COOKIE_DOMAIN = 'estolator.onrender.com'
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["trove-mh5l.onrender.com"]
 
 
 MIDDLEWARE = [
@@ -106,17 +108,33 @@ WSGI_APPLICATION = 'photos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Local db
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'photos',
+#         'USER': 'photosuser',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
+# Prod db
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'photos',
-        'USER': 'photosuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'photos_pkrb',
+        'USER': 'photos_pkrb_user',
+        'PASSWORD': '3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3',
+        'HOST': 'dpg-cjvfqt7hdsdc73e6jk8g-a',
+        'PORT': '5432',
     }
 }
 
+# DATABASES = {
+# 	"default": dj_database_url.parse("postgres://photos_pkrb_user:3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3@dpg-cjvfqt7hdsdc73e6jk8g-a.oregon-postgres.render.com/photos_pkrb")
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
