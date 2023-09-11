@@ -28,8 +28,9 @@ import os
 SECRET_KEY = 'django-insecure-5fjlbbqd*k1*2c7_6=x2ok!ch&83rpovciqt^u+=y=g*#fnh(c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 CSRF_COOKIE_DOMAIN = 'trove-mh5l.onrender.com'
+CSRF_COOKIE_SECURE = True
 
 ALLOWED_HOSTS = ["trove-mh5l.onrender.com"]
 
@@ -44,7 +45,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 # Application definition
