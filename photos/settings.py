@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     
 ]
 
-ORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOW_ALL_ORIGINS = True 
 CORS_ALLOWED_ORIGINS = [
     'https://trove-mh5l.onrender.com',
 ]
