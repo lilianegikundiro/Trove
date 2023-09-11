@@ -30,25 +30,8 @@ SECRET_KEY = 'django-insecure-5fjlbbqd*k1*2c7_6=x2ok!ch&83rpovciqt^u+=y=g*#fnh(c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 CSRF_COOKIE_DOMAIN = 'trove-mh5l.onrender.com'
-CSRF_COOKIE_SECURE = True
+ALLOWED_HOSTS = ["*"]
 
-ALLOWED_HOSTS = ["trove-mh5l.onrender.com"]
-
-CORS_ALLOW_ALL_ORIGINS = True 
-CORS_ALLOWED_ORIGINS = [
-    'https://trove-mh5l.onrender.com',
-]
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
-CSRF_TRUSTED_ORIGINS = [
-    'https://trove-mh5l.onrender.com',
-]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,6 +63,21 @@ INSTALLED_APPS = [
     
 ]
 
+ORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOWED_ORIGINS = [
+    'https://trove-mh5l.onrender.com',
+]
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+CSRF_TRUSTED_ORIGINS = [
+    'https://trove-mh5l.onrender.com',
+]
 
 
 
