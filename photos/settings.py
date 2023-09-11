@@ -34,6 +34,18 @@ CSRF_COOKIE_SECURE = True
 
 ALLOWED_HOSTS = ["trove-mh5l.onrender.com"]
 
+CORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOWED_ORIGINS = [
+    'https://trove-mh5l.onrender.com',
+]
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
