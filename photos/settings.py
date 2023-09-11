@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 import cloudinary
@@ -117,6 +119,10 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# DATABASES = {
+# 	"default": dj_database_url.parse("postgres://photos_pkrb_user:3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3@dpg-cjvfqt7hdsdc73e6jk8g-a.oregon-postgres.render.com/photos_pkrb")
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
