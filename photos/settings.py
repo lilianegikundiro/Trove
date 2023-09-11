@@ -94,17 +94,29 @@ WSGI_APPLICATION = 'photos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Local db
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'photos',
+#         'USER': 'photosuser',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
+# Prod db
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'photos',
-        'USER': 'photosuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'photos_pkrb',
+        'USER': 'photos_pkrb_user',
+        'PASSWORD': '3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3',
+        'HOST': 'dpg-cjvfqt7hdsdc73e6jk8g-a',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
