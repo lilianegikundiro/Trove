@@ -46,6 +46,9 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://trove-mh5l.onrender.com',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
