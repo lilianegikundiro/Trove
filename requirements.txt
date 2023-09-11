@@ -5,7 +5,9 @@ cloudinary==1.33.0
 Django==3.2.21
 django-cors-headers==4.1.0
 djangorestframework==3.14.0
+gunicorn==21.2.0
 idna==3.4
+packaging==23.1
 psycopg2==2.9.6
 pytz==2023.3
 requests==2.31.0
