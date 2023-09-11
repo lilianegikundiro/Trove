@@ -5,13 +5,13 @@ from cloudinary.models import CloudinaryField
 
 class Image(models.Model):
 
-    image = CloudinaryField("image")
+    media = CloudinaryField(resource_type='auto')
     timestamp = models.DateTimeField(default=timezone.now)
 
     @property
     def image_url(self):
         return (
-            f"https://res.cloudinary.com/dbgooph5c/{self.image}"
+            f"https://res.cloudinary.com/dbgooph5c/{self.media}"
         )
 
  

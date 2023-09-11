@@ -25,11 +25,13 @@ from rest_framework.authtoken.views import obtain_auth_token
 from .views import RegistrationViewSet
 
 router=routers.DefaultRouter()
+# router.register(r'media/download', FileDownloadViewSet, basename='file-download')
 
 urlpatterns = [
      path('register/', RegistrationViewSet.as_view({'get': 'list', 'post': 'create'}), name='registration'),
      path('login/',LoginViewSet.as_view({'post': 'login', 'put': 'update', 'delete': 'destroy'}),name='login'),
      path("",include(router.urls)),
-     path("image/upload/", UploadImage.as_view()),
-     path("image/list/", ListImages.as_view())
+     path("media/upload/", UploadImage.as_view()),
+     path("media/list/", ListImages.as_view()),
+     path("media/download/",FileDownloadViewSet.as_view({'get': 'create'}))
 ]

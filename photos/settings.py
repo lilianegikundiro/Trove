@@ -27,9 +27,23 @@ SECRET_KEY = 'django-insecure-5fjlbbqd*k1*2c7_6=x2ok!ch&83rpovciqt^u+=y=g*#fnh(c
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+CSRF_COOKIE_DOMAIN = 'estolator.onrender.com'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
 
 # Application definition
 
@@ -44,8 +58,14 @@ INSTALLED_APPS = [
     'cloudinary',
     'api',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    "corsheaders",
+    
 ]
+
+
+
+
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -60,15 +80,7 @@ REST_FRAMEWORK = {
     ],
     
 }
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+
 
 ROOT_URLCONF = 'photos.urls'
 

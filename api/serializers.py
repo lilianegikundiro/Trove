@@ -12,11 +12,11 @@ class ImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Image
-        fields = ["image_url", "image", "timestamp","id"]
+        fields = ["image_url", "media", "timestamp","id"]
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation.pop("image")
+        representation.pop("media")
 
         return representation
 

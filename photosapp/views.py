@@ -20,6 +20,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from .forms import RegistrationForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class RegistrationView(CreateView):
     form_class = RegistrationForm
@@ -36,9 +37,27 @@ class IndexView(LoginRequiredMixin,View):
         photo = photos.objects.all()
         ctx = {'photo':photo}
         return render(request, 'photosapp/index.html', ctx)
+    
+    def post(self, request):
+        if 'delete_photo' in request.POST:
+            photo_id = request.POST.get('delete_photo')
+            photo = photos.objects.get(id=photo_id)
+            photo.delete()
+            return redirect('index')  # Redirect to the index view after deletion
+
+        # Handle other POST requests if needed
+
+        return redirect('index')
 
 
+class PhotoDeleteView(LoginRequiredMixin, DeleteView):
+	model = photos
+	template_name = 'photosapp/delete_confirm.html'
+	success_url = reverse_lazy('index')
 
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		return context
 
 
 class UploadView(LoginRequiredMixin,View):

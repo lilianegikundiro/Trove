@@ -1,3 +1,4 @@
+from django.http import FileResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
@@ -11,7 +12,8 @@ from .serializers import UserSerializer, LoginSerializer
 from rest_framework import viewsets,status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-
+import requests
+from django.http import HttpResponse
 # class IndexViewSet(viewsets.ModelViewSet):
 # class IndexViewSet(viewsets.ModelViewSet):
 #         queryset=photos.objects.all()
@@ -77,6 +79,25 @@ class LoginViewSet(viewsets.ModelViewSet):
 
         # Replace the following line with your own logic to delete the user
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+from django.http import HttpResponse
+
+class FileDownloadViewSet(viewsets.ViewSet):
+    def create(self, request):
+        resource_url = request.query_params.get('resource_url')
+
+        response = requests.get(resource_url)
+
+        # Extract the file name from the URL
+        file_name = resource_url.split("/")[-1]
+
+        # Set the appropriate headers for file download
+        file_response = HttpResponse(response.content, content_type='application/octet-stream')
+        file_response['Content-Disposition'] = f'attachment; filename="{file_name}"'
+        file_response['Content-Length'] = len(response.content)
+
+        return file_response
+
     
 
 
