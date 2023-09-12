@@ -29,7 +29,7 @@ router=routers.DefaultRouter()
 
 urlpatterns = [
      path('register/', RegistrationViewSet.as_view({'get': 'list', 'post': 'create'}), name='registration'),
-     path('login/',LoginViewSet.as_view({'post': 'login', 'put': 'update', 'delete': 'destroy'}),name='login'),
+     path('login/',LoginViewSet.as_view({'get': 'list','post': 'login', 'put': 'update', 'delete': 'destroy'}),name='login'),
      path("",include(router.urls)),
      path("media/upload/", UploadImage.as_view()),
      path("media/list/", ListImages.as_view()),
