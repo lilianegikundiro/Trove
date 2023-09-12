@@ -28,8 +28,12 @@ class RegistrationViewSet(viewsets.ModelViewSet):
 class RegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    
+    
+    
 
 class LoginViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
     serializer_class = LoginSerializer
     @action(methods=['post'], detail=False)
     def login(self, request):

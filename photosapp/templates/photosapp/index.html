@@ -89,6 +89,9 @@
         video{
             max-height:300px;
         }
+        .a{
+            color:purple;
+        }
     </style>
 
     <div class="title-holder">
@@ -109,8 +112,7 @@
             </video>
             {% endif %}
             <a class="download-button" href="/api/media/download?resource_url={{pic.media.url}}" download>Download</a>
-            <input type="hidden" name="delete_photo" value="{{ pic.photo_id }}">
-                        <button type="submit">Delete</button>
+            
                         <a class="uk-button uk-button-default uk-button-small" href="{% url 'delete' pic.pk %}">Delete</a>
         </div>
         {% endfor %}
