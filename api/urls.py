@@ -28,8 +28,8 @@ router=routers.DefaultRouter()
 # router.register(r'media/download', FileDownloadViewSet, basename='file-download')
 
 urlpatterns = [
-     path('register/', RegistrationViewSet.as_view({'get': 'list', 'post': 'create'}), name='registration'),
-     path('login/',LoginViewSet.as_view({'get': 'list','post': 'login', 'put': 'update', 'delete': 'destroy'}),name='login'),
+     path('register/', RegistrationViewSet.as_view({'get': 'list', 'post': 'create'}), name='apiRegistration'),
+     path('login/',LoginViewSet.as_view({'get': 'list','post': 'login', 'put': 'update', 'delete': 'destroy'}),name='apiLogin'),
      path("",include(router.urls)),
      path("media/upload/", UploadImage.as_view()),
      path("media/list/", ListImages.as_view()),
