@@ -29,8 +29,9 @@ SECRET_KEY = 'django-insecure-5fjlbbqd*k1*2c7_6=x2ok!ch&83rpovciqt^u+=y=g*#fnh(c
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-CSRF_COOKIE_DOMAIN = 'trove-mh5l.onrender.com'
-ALLOWED_HOSTS = ["*"]
+CSRF_COOKIE_DOMAIN = 'estolator.onrender.com'
+
+ALLOWED_HOSTS = ["trove-mh5l.onrender.com","127.0.0.1"]
 
 
 MIDDLEWARE = [
@@ -43,6 +44,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 # Application definition
@@ -63,21 +65,6 @@ INSTALLED_APPS = [
     
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True 
-CORS_ALLOWED_ORIGINS = [
-    'https://trove-mh5l.onrender.com',
-]
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
-CSRF_TRUSTED_ORIGINS = [
-    'https://trove-mh5l.onrender.com',
-]
 
 
 
@@ -122,28 +109,28 @@ WSGI_APPLICATION = 'photos.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # Local db
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'photos',
-        'USER': 'photosuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
-# Prod db
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'photos_pkrb',
-#         'USER': 'photos_pkrb_user',
-#         'PASSWORD': '3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3',
-#         'HOST': 'dpg-cjvfqt7hdsdc73e6jk8g-a',
-#         'PORT': '5432',
+#         'NAME': 'photos',
+#         'USER': 'photosuser',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '',
 #     }
 # }
+
+# Prod db
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'photos_pkrb',
+        'USER': 'photos_pkrb_user',
+        'PASSWORD': '3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3',
+        'HOST': 'dpg-cjvfqt7hdsdc73e6jk8g-a',
+        'PORT': '5432',
+    }
+}
 
 # DATABASES = {
 # 	"default": dj_database_url.parse("postgres://photos_pkrb_user:3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3@dpg-cjvfqt7hdsdc73e6jk8g-a.oregon-postgres.render.com/photos_pkrb")
