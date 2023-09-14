@@ -33,7 +33,7 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     
 
 class LoginViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    
     serializer_class = LoginSerializer
     @action(methods=['post'], detail=False)
     def login(self, request):
