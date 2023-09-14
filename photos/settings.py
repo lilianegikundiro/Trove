@@ -76,7 +76,7 @@ CORS_ALLOW_METHODS = [
     "PUT",
 ]
 CSRF_TRUSTED_ORIGINS = [
-    'https://trove-mh5l.onrender.com',
+    'https://trove-mh5l.onrender.com/',
 ]
 
 
