@@ -29,8 +29,9 @@ SECRET_KEY = 'django-insecure-5fjlbbqd*k1*2c7_6=x2ok!ch&83rpovciqt^u+=y=g*#fnh(c
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-CSRF_COOKIE_DOMAIN = 'trove-mh5l.onrender.com'
-ALLOWED_HOSTS = ["*"]
+CSRF_COOKIE_DOMAIN = 'estolator.onrender.com'
+
+ALLOWED_HOSTS = ["trove-mh5l.onrender.com","127.0.0.1"]
 
 
 MIDDLEWARE = [
@@ -43,6 +44,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 # Application definition
@@ -61,22 +63,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     "corsheaders",
     
-]
-
-CORS_ALLOW_ALL_ORIGINS = True 
-CORS_ALLOWED_ORIGINS = [
-    '*',
-]
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
-CSRF_TRUSTED_ORIGINS = [
-    '*',
 ]
 
 
