@@ -65,7 +65,7 @@ INSTALLED_APPS = [
 
 CORS_ALLOW_ALL_ORIGINS = True 
 CORS_ALLOWED_ORIGINS = [
-    'https://trove-mh5l.onrender.com',
+    '*',
 ]
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -76,7 +76,7 @@ CORS_ALLOW_METHODS = [
     "PUT",
 ]
 CSRF_TRUSTED_ORIGINS = [
-    'https://trove-mh5l.onrender.com/',
+    '*',
 ]
 
 
