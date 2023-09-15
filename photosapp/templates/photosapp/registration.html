@@ -11,14 +11,14 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f7f7f7;
+            min-height: 100vh;
+            background-color: #f0f0f0;
         }
 
         .container {
@@ -26,16 +26,15 @@
             width: 100%;
             background-color: #ffffff;
             border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .title {
             text-align: center;
             margin-bottom: 20px;
-            font-size: 32px;
+            font-size: 24px;
             color: #333333;
-            {% comment %} text-transform: uppercase; {% endcomment %}
         }
 
         form {
@@ -43,14 +42,20 @@
             flex-direction: column;
         }
 
+        label {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 8px;
+        }
+
         input[type="text"],
         input[type="password"],
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             font-size: 16px;
             transition: border-color 0.3s;
         }
@@ -62,9 +67,9 @@
         }
 
         button {
-            background-color: #2196f3;
-            color: #ffffff;
-            font-size: 16px;
+            background-color: #800080; /* Purple background color */
+            color: #ffffff; /* White text color */
+            font-size: 18px;
             font-weight: bold;
             border: none;
             cursor: pointer;
@@ -72,8 +77,10 @@
         }
 
         button:hover {
-            background-color: #0c7cd5;
+            background-color: #4b0082; /* Darker purple on hover */
         }
+
+    
     </style>
 </head>
 <body>
@@ -84,6 +91,10 @@
             {{ form.as_p }}
             <button type="submit">Register</button>
         </form>
+        
+        <!-- Add Navigation Link -->
+        <p class="navigation-link">Already have an account? <a href="/">Login</a></p>
+        
     </div>
 </body>
 </html>
