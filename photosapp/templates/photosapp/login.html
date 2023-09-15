@@ -35,14 +35,14 @@
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            box-sizing: border-box; /* Adjusting box-sizing property */
+            box-sizing: border-box;
         }
 
         button[type="submit"] {
             display: block;
             width: 100%;
             padding: 10px;
-            background-color: #4285f4;
+            background-color: #800080; /* Purple background color */
             color: #fff;
             text-align: center;
             border: none;
@@ -52,7 +52,12 @@
         }
 
         button[type="submit"]:hover {
-            background-color: #3367d6;
+            background-color: #4b0082; /* Darker purple on hover */
+        }
+
+        /* Center-align the registration link */
+        .center {
+            text-align: center;
         }
     </style>
 </head>
@@ -63,6 +68,8 @@
         {{ form.as_p }}
         <button type="submit">Login</button>
     </form>
+    
+    <!-- Center-align the registration link -->
+    <p class="center">Don't have an account? <a href="/register">Register</a></p>
 </body>
 </html>
-
