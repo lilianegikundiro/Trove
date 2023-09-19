@@ -48,6 +48,8 @@ class IndexView(LoginRequiredMixin,View):
         # Handle other POST requests if needed
 
         return redirect('index')
+    
+   
 
 
 class PhotoDeleteView(LoginRequiredMixin, DeleteView):
@@ -62,15 +64,20 @@ class PhotoDeleteView(LoginRequiredMixin, DeleteView):
 
 class UploadView(LoginRequiredMixin,View):
     def get(self, request):
+        print(request.user)
         form = UploadForm()
         return render(request, 'photosapp/upload.html', {'form': form})
 
     def post(self, request):
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            media = form.save(commit=False)
+            media.user = request.user  # This links the uploaded content to the logged-in user
+            media.save()
             return redirect('index')  # Replace 'index' with the appropriate URL or view name
         return render(request, 'photosapp/upload.html', {'form': form})
+    
+    
 
 
 

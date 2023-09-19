@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import requests
 from django.http import HttpResponse
+from rest_framework.permissions import IsAuthenticated
 # class IndexViewSet(viewsets.ModelViewSet):
 # class IndexViewSet(viewsets.ModelViewSet):
 #         queryset=photos.objects.all()
@@ -24,6 +25,7 @@ from django.http import HttpResponse
 class RegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    
     
 class RegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -87,6 +89,7 @@ class LoginViewSet(viewsets.ModelViewSet):
 from django.http import HttpResponse
 
 class FileDownloadViewSet(viewsets.ViewSet):
+    permission_classes=[IsAuthenticated]
     def create(self, request):
         resource_url = request.query_params.get('resource_url')
 

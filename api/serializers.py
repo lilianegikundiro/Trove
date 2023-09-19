@@ -13,12 +13,20 @@ class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
         fields = ["image_url", "media", "timestamp","id"]
+        
+    def create(self, validated_data):
+        # Get the currently logged-in user from the context
+        user = self.context['request'].user
+        image = Image.objects.create(user=user, **validated_data)
+        return image
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         representation.pop("media")
 
         return representation
+    
+    
 
 
 class UserSerializer(serializers.ModelSerializer):
