@@ -21,7 +21,7 @@ class ListImages(ListAPIView):
     parser_classes = (MultiPartParser,)
     queryset = Image.objects.all()
     
-    # def get_queryset(self):
-        # Filter the queryset to retrieve only the images associated with the logged-in user
-        # return Image.objects.filter(user=self.request.user)
+    def get_queryset(self):
+        
+        return Image.objects.filter(user=self.request.user)
     
