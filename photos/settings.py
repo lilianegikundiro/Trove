@@ -108,28 +108,28 @@ WSGI_APPLICATION = 'photos.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # Local db
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'photos',
-        'USER': 'photosuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
-# Prod db
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'photos_pkrb',
-#         'USER': 'photos_pkrb_user',
-#         'PASSWORD': '3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3',
-#         'HOST': 'dpg-cjvfqt7hdsdc73e6jk8g-a',
-#         'PORT': '5432',
+#         'NAME': 'photos',
+#         'USER': 'photosuser',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '',
 #     }
 # }
+
+# Prod db
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'photos_pkrb',
+        'USER': 'photos_pkrb_user',
+        'PASSWORD': '3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3',
+        'HOST': 'dpg-cjvfqt7hdsdc73e6jk8g-a',
+        'PORT': '5432',
+    }
+}
 
 # DATABASES = {
 # 	"default": dj_database_url.parse("postgres://photos_pkrb_user:3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3@dpg-cjvfqt7hdsdc73e6jk8g-a.oregon-postgres.render.com/photos_pkrb")
