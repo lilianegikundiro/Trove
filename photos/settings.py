@@ -14,6 +14,8 @@ from pathlib import Path
 
 import dj_database_url
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 import cloudinary
@@ -107,32 +109,26 @@ WSGI_APPLICATION = 'photos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# Local db
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'photos',
-#         'USER': 'photosuser',
-#         'PASSWORD': 'password',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
+dbName=config("NAME")
+dbEngine=config("ENGINE")
+dbUser=config("DBUSER")
+dbPass=config("PASSWORD")
+dbHost=config("HOST")
 
-# Prod db
+# Local db
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'photos_pkrb',
-        'USER': 'photos_pkrb_user',
-        'PASSWORD': '3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3',
-        'HOST': 'dpg-cjvfqt7hdsdc73e6jk8g-a',
-        'PORT': '5432',
-    }
+'default': {
+'ENGINE': dbEngine,
+'NAME': dbName,
+'USER': dbUser,
+'PASSWORD': dbPass,
+'HOST': dbHost,
+'PORT': '',
+}
 }
 
 # DATABASES = {
-# 	"default": dj_database_url.parse("postgres://photos_pkrb_user:3HQoNW8EDOtnFjAiryR7if8RLoN7U2o3@dpg-cjvfqt7hdsdc73e6jk8g-a.oregon-postgres.render.com/photos_pkrb")
+# 	"default": dj_database_url.parse(config("MIGRATION_DB"))
 # }
 
 # Password validation
@@ -187,4 +183,6 @@ SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
     os.path.join(SETTINGS_PATH, 'templates'),
 )
+
+
 
