@@ -33,8 +33,9 @@ urlpatterns = [
      path("",include(router.urls)),
      path("media/upload/", UploadImage.as_view()),
      path("media/list/", ListImages.as_view()),
-     path('media/list/<int:pk>/', SingleImageView.as_view()),
-     path('media/list/<int:pk>/edit/', EditImageView.as_view()),
-     path('media/list/<int:pk>/delete/', DeleteImageView.as_view()),
+       path('media/<int:pk>/delete/', DeleteImageView.as_view()),
+     path('media/<int:pk>/', SingleImageView.as_view()),
+     path('media/<int:pk>/edit/', EditImageView.as_view()),
+   
      path("media/download/",FileDownloadViewSet.as_view({'get': 'create'}))
 ]

@@ -12,7 +12,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Image
-        fields = ["title","image_url", "media", "timestamp","id"]
+        fields = ["title","image_url", "media", "timestamp","id","user_id"]
         
     def create(self, validated_data):
         # Get the currently logged-in user from the context

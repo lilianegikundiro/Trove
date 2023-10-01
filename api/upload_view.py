@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
 
 from .models import Image
-from .serializers import ImageSerializer,EditImageSerializer
+from .serializers import ImageSerializer,EditImageSerializer,DeleteImageSerializer
 from urllib import response
 from rest_framework.decorators import action
 
@@ -49,6 +49,8 @@ class EditImageView(UpdateAPIView):
     
 class DeleteImageView(DestroyAPIView):
     permission_classes = [IsAuthenticated]
+    # serializer_class = DeleteImageSerializer
+    queryset = Image.objects.all()
 
     def delete(self, request, pk):
         try:
