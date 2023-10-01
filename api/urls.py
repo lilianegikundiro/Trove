@@ -20,7 +20,7 @@ from django.db import router
 from django.urls import path,include
 from rest_framework import routers
 from .views import *
-from .upload_view import ListImages, UploadImage
+from .upload_view import ListImages, UploadImage, SingleImageView,EditImageView, DeleteImageView
 from rest_framework.authtoken.views import obtain_auth_token
 from .views import RegistrationViewSet
 
@@ -33,5 +33,8 @@ urlpatterns = [
      path("",include(router.urls)),
      path("media/upload/", UploadImage.as_view()),
      path("media/list/", ListImages.as_view()),
+     path('media/list/<int:pk>/', SingleImageView.as_view()),
+     path('media/list/<int:pk>/edit/', EditImageView.as_view()),
+     path('media/list/<int:pk>/delete/', DeleteImageView.as_view()),
      path("media/download/",FileDownloadViewSet.as_view({'get': 'create'}))
 ]

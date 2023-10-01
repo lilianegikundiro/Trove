@@ -15,6 +15,8 @@ from rest_framework.decorators import api_view
 import requests
 from django.http import HttpResponse
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 # class IndexViewSet(viewsets.ModelViewSet):
 # class IndexViewSet(viewsets.ModelViewSet):
 #         queryset=photos.objects.all()
@@ -26,6 +28,35 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            password = serializer.validated_data.get('password')
+
+            try:
+                # Validate the password strength
+                validate_password(password)
+
+                # If the password passes validation, proceed with user creation
+                user = serializer.save()
+
+                return Response(
+                    {"message": "Registration successful. Welcome, {}!".format(user.username)},
+                    status=status.HTTP_201_CREATED,
+                )
+
+            except ValidationError as e:
+                # Password did not meet strength requirements
+                return Response(
+                    {"error": "Password is not strong enough. {}".format(e)},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
     
 class RegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -33,7 +64,6 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     
     
     
-
 class LoginViewSet(viewsets.ModelViewSet):
     
     serializer_class = LoginSerializer

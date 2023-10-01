@@ -1,4 +1,4 @@
-from telnetlib import LOGOUT
+from telnetlib import LOGOUT, STATUS
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseNotFound
 from django.views import View
@@ -26,9 +26,7 @@ class RegistrationView(CreateView):
     form_class = RegistrationForm
     template_name = 'photosapp/registration.html'
     success_url = reverse_lazy('login')
-
-
-
+    
 # Create your views here.
 
 

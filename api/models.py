@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class Image(models.Model):
 
     media = CloudinaryField(resource_type='auto')
+    title = models.CharField(max_length=100, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

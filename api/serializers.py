@@ -12,7 +12,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Image
-        fields = ["image_url", "media", "timestamp","id"]
+        fields = ["title","image_url", "media", "timestamp","id"]
         
     def create(self, validated_data):
         # Get the currently logged-in user from the context
@@ -52,3 +52,11 @@ class LoginSerializer(serializers.Serializer):
         # If validation fails, raise serializers.ValidationError
         # If validation passes, return the validated data
         return data
+    
+class EditImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ["title"] 
+        
+class DeleteImageSerializer(serializers.Serializer):
+    pass
