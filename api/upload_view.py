@@ -1,5 +1,6 @@
-from requests import Response
+
 from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView, ListAPIView,RetrieveAPIView,UpdateAPIView,DestroyAPIView
 from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated
@@ -56,6 +57,6 @@ class DeleteImageView(DestroyAPIView):
         try:
             image = Image.objects.get(pk=pk, user=request.user)
             image.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response({"detail": "Image deleted."},status=status.HTTP_200_OK)
         except Image.DoesNotExist:
             return Response({"detail": "Image not found."}, status=status.HTTP_404_NOT_FOUND)

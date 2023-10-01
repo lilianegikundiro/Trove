@@ -28,39 +28,20 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     
-
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-        if serializer.is_valid():
-            password = serializer.validated_data.get('password')
+        # Create the user using the serializer and save it to the database
+        user = serializer.save()
 
-            try:
-                # Validate the password strength
-                validate_password(password)
+        # Customize the response message
+        response_data = {
+            "message": "User registration successful. Thank you for signing up!"
+        }
 
-                # If the password passes validation, proceed with user creation
-                user = serializer.save()
-
-                return Response(
-                    {"message": "Registration successful. Welcome, {}!".format(user.username)},
-                    status=status.HTTP_201_CREATED,
-                )
-
-            except ValidationError as e:
-                # Password did not meet strength requirements
-                return Response(
-                    {"error": "Password is not strong enough. {}".format(e)},
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-    
-    
-class RegistrationViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+        # Return a custom response
+        return Response(data=response_data, status=status.HTTP_201_CREATED)
     
     
     
