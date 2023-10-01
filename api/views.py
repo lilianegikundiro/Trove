@@ -15,6 +15,8 @@ from rest_framework.decorators import api_view
 import requests
 from django.http import HttpResponse
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 # class IndexViewSet(viewsets.ModelViewSet):
 # class IndexViewSet(viewsets.ModelViewSet):
 #         queryset=photos.objects.all()
@@ -26,14 +28,23 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     
-    
-class RegistrationViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    
-    
-    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
+        # Create the user using the serializer and save it to the database
+        user = serializer.save()
+
+        # Customize the response message
+        response_data = {
+            "message": "User registration successful. Thank you for signing up!"
+        }
+
+        # Return a custom response
+        return Response(data=response_data, status=status.HTTP_201_CREATED)
+    
+    
+    
 class LoginViewSet(viewsets.ModelViewSet):
     
     serializer_class = LoginSerializer
