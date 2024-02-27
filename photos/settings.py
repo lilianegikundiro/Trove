@@ -34,6 +34,8 @@ DEBUG = True
 CSRF_COOKIE_DOMAIN = 'trove-mh5l.onrender.com'
 
 ALLOWED_HOSTS = ["trove-mh5l.onrender.com","127.0.0.1"]
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
 
 
 MIDDLEWARE = [
@@ -64,6 +66,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     "corsheaders",
+    'rest_framework_swagger',       
+    'drf_yasg',    
     
 ]
 

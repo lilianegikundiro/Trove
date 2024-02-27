@@ -18,15 +18,35 @@ from django.contrib import admin
 from photosapp import views
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+from rest_framework_swagger.views import get_swagger_view
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Your API Title",
+        default_version="v1",
+        description="Your API description",
+        terms_of_service="https://www.yourapi.com/terms/",
+        contact=openapi.Contact(email="contact@yourapi.com"),
+        license=openapi.License(name="Your License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
 
 urlpatterns = [
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('admin/', admin.site.urls),
     path("", include("photosapp.urls"),{},"photos"),
     path("api/",include("api.urls")),
-    path('api-auth/', include('rest_framework.urls'))
-    
-    
+    path('api-auth/', include('rest_framework.urls')),
 
+    
 ]
 
 
