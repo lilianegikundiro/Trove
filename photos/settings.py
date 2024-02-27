@@ -30,8 +30,8 @@ import os
 SECRET_KEY = 'django-insecure-5fjlbbqd*k1*2c7_6=x2ok!ch&83rpovciqt^u+=y=g*#fnh(c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-CSRF_COOKIE_DOMAIN = 'trove-mh5l.onrender.com'
+DEBUG = False
+CSRF_COOKIE_DOMAIN = None
 
 ALLOWED_HOSTS = ["trove-mh5l.onrender.com","127.0.0.1"]
 USE_X_FORWARDED_HOST = True
